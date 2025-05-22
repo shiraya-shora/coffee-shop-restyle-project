@@ -16,7 +16,7 @@ const testimonials = [
     name: 'Michael Chen',
     role: 'Local Business Owner',
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80',
-    quote: 'I've visited coffee shops around the world, and BrewHaven stands among the best. Their single-origin espresso changed my perspective on what coffee can be.',
+    quote: "I've visited coffee shops around the world, and BrewHaven stands among the best. Their single-origin espresso changed my perspective on what coffee can be.",
     rating: 5
   },
   {
