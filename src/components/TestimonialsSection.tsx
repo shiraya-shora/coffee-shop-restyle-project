@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/carousel";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const testimonials = [
   {
@@ -116,12 +117,18 @@ const TestimonialsSection = () => {
                       
                       <div className="p-6 md:p-8">
                         <div className="flex flex-col items-center">
-                          <Avatar className="w-16 h-16 border-2 border-coffee-500 mb-4">
-                            <AvatarImage src={testimonial.image} alt={testimonial.name} />
-                            <AvatarFallback className="bg-coffee-700">
-                              {testimonial.name.charAt(0)}
-                            </AvatarFallback>
-                          </Avatar>
+                          <div className="w-16 h-16 relative mb-4">
+                            <Avatar className="w-full h-full border-2 border-coffee-500">
+                              <AvatarImage 
+                                src={testimonial.image} 
+                                alt={testimonial.name}
+                                className="object-cover"
+                              />
+                              <AvatarFallback className="bg-coffee-700">
+                                {testimonial.name.charAt(0)}
+                              </AvatarFallback>
+                            </Avatar>
+                          </div>
                           
                           <h4 className="font-semibold text-lg text-cream-100">{testimonial.name}</h4>
                           <p className="text-coffee-400 text-sm mb-2">{testimonial.role}</p>
