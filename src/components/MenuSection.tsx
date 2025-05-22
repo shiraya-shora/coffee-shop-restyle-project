@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
 
 const categories = ['Все', 'Горячий кофе', 'Холодный кофе', 'Фирменные', 'Выпечка'];
 
@@ -112,7 +113,7 @@ const MenuSection = () => {
         {/* Menu Items */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {filteredItems.map((item) => (
-            <div key={item.id} className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
+            <Card key={item.id} className="overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
               <div className="h-48 overflow-hidden">
                 <img 
                   src={item.image} 
@@ -120,15 +121,17 @@ const MenuSection = () => {
                   className="w-full h-full object-cover transition-transform duration-300 hover:scale-105" 
                 />
               </div>
-              <div className="p-6 flex flex-col flex-grow">
+              <CardContent className="p-6 flex-grow">
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="font-playfair text-xl font-bold text-coffee-800">{item.name}</h3>
                   <span className="bg-cream-100 text-coffee-700 px-2 py-1 rounded font-medium">${item.price.toFixed(2)}</span>
                 </div>
-                <p className="text-coffee-600 text-sm mb-4 flex-grow">{item.description}</p>
-                <Button className="w-full bg-coffee-600 hover:bg-coffee-700 text-white mt-auto">Добавить в заказ</Button>
-              </div>
-            </div>
+                <p className="text-coffee-600 text-sm mb-4">{item.description}</p>
+              </CardContent>
+              <CardFooter className="p-6 pt-0">
+                <Button className="w-full bg-coffee-600 hover:bg-coffee-700 text-white">Добавить в заказ</Button>
+              </CardFooter>
+            </Card>
           ))}
         </div>
 
