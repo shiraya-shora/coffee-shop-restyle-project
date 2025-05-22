@@ -1,6 +1,15 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselPrevious, 
+  CarouselNext 
+} from "@/components/ui/carousel";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Card } from "@/components/ui/card";
 
 const testimonials = [
   {
@@ -26,93 +35,133 @@ const testimonials = [
     image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
     quote: 'Not only is their coffee exceptional, but their pastries are to die for. The almond croissant pairs perfectly with their signature latte.',
     rating: 5
+  },
+  {
+    id: 4,
+    name: 'David Wilson',
+    role: 'Coffee Connoisseur',
+    image: 'https://images.unsplash.com/photo-1500048993953-d23a436266cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    quote: 'The atmosphere at BrewHaven is simply unmatched. It has become my go-to spot for both casual meetings and focused work sessions.',
+    rating: 5
+  },
+  {
+    id: 5,
+    name: 'Sophia Kim',
+    role: 'Regular Customer',
+    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80',
+    quote: 'The seasonal specialties at BrewHaven always surprise and delight. Their attention to quality and detail is evident in every cup.',
+    rating: 5
   }
 ];
 
 const TestimonialsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [api, setApi] = useState<any>(null);
 
-  const nextTestimonial = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+  // Update current index when carousel changes
+  useEffect(() => {
+    if (!api) return;
+    
+    const onSelect = () => {
+      setCurrentIndex(api.selectedScrollSnap());
+    };
+    
+    api.on('select', onSelect);
+    
+    return () => {
+      api.off('select', onSelect);
+    };
+  }, [api]);
+  
+  // Display stars for rating
+  const renderStars = (rating: number) => {
+    return [...Array(rating)].map((_, i) => (
+      <Star key={i} size={16} className="fill-coffee-400 text-coffee-400" />
+    ));
   };
-
-  const prevTestimonial = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length);
-  };
-
-  const currentTestimonial = testimonials[currentIndex];
 
   return (
-    <section className="py-24 bg-coffee-900 text-white">
-      <div className="container mx-auto px-4 md:px-6">
+    <section className="py-24 bg-coffee-900 text-white relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-coffee-400 blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-40 h-40 rounded-full bg-cream-300 blur-3xl"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="text-center mb-16">
-          <span className="text-coffee-400 font-medium mb-2 block">Testimonials</span>
+          <span className="text-coffee-400 font-medium mb-2 block">Отзывы</span>
           <h2 className="text-4xl font-bold mb-4 text-white">
             What Our Customers Say
           </h2>
-          <p className="text-cream-200 max-w-2xl mx-auto">
-            Don't just take our word for it. Here's what our loyal customers have to say about their BrewHaven experience.
-          </p>
         </div>
 
-        <div className="max-w-4xl mx-auto relative">
-          <div className="bg-coffee-800 rounded-lg p-8 md:p-12 shadow-xl">
-            <div className="flex flex-col md:flex-row gap-8 items-center">
-              <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden flex-shrink-0 border-4 border-coffee-400">
-                <img 
-                  src={currentTestimonial.image} 
-                  alt={currentTestimonial.name}
-                  className="w-full h-full object-cover" 
-                />
-              </div>
-              <div>
-                <div className="flex mb-4">
-                  {[...Array(currentTestimonial.rating)].map((_, i) => (
-                    <Star key={i} size={20} className="fill-coffee-400 text-coffee-400" />
-                  ))}
-                </div>
-                <blockquote className="text-xl md:text-2xl italic mb-6 text-cream-100">
-                  "{currentTestimonial.quote}"
-                </blockquote>
-                <div>
-                  <p className="font-bold text-lg">{currentTestimonial.name}</p>
-                  <p className="text-coffee-400">{currentTestimonial.role}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Navigation Buttons */}
-          <div className="flex justify-center mt-8 space-x-4">
-            <button 
-              onClick={prevTestimonial} 
-              className="bg-coffee-700 hover:bg-coffee-600 text-white p-3 rounded-full transition-colors"
-              aria-label="Previous testimonial"
-            >
-              <ChevronLeft size={24} />
-            </button>
-            <button 
-              onClick={nextTestimonial} 
-              className="bg-coffee-700 hover:bg-coffee-600 text-white p-3 rounded-full transition-colors"
-              aria-label="Next testimonial"
-            >
-              <ChevronRight size={24} />
-            </button>
-          </div>
-
-          {/* Indicators */}
-          <div className="flex justify-center mt-6 space-x-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                  currentIndex === index ? 'bg-coffee-400' : 'bg-coffee-700'
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
+        <div className="max-w-6xl mx-auto">
+          <Carousel 
+            setApi={setApi}
+            className="w-full"
+            opts={{
+              align: "center",
+              loop: true
+            }}
+          >
+            <CarouselContent>
+              {testimonials.map((testimonial) => (
+                <CarouselItem key={testimonial.id} className="md:basis-2/3 lg:basis-1/2 pl-4">
+                  <div className="p-1">
+                    <Card className="bg-coffee-800/80 backdrop-blur-sm border-coffee-700 shadow-xl overflow-hidden relative rounded-xl">
+                      <div className="absolute top-0 right-0 p-4">
+                        <div className="text-5xl font-bold text-coffee-500 opacity-20">"</div>
+                      </div>
+                      
+                      <div className="p-6 md:p-8">
+                        <div className="flex flex-col items-center">
+                          <Avatar className="w-16 h-16 border-2 border-coffee-500 mb-4">
+                            <AvatarImage src={testimonial.image} alt={testimonial.name} />
+                            <AvatarFallback className="bg-coffee-700">
+                              {testimonial.name.charAt(0)}
+                            </AvatarFallback>
+                          </Avatar>
+                          
+                          <h4 className="font-semibold text-lg text-cream-100">{testimonial.name}</h4>
+                          <p className="text-coffee-400 text-sm mb-2">{testimonial.role}</p>
+                          
+                          <div className="flex space-x-1 mb-4">
+                            {renderStars(testimonial.rating)}
+                          </div>
+                          
+                          <blockquote className="text-center text-cream-100 italic">
+                            "{testimonial.quote}"
+                          </blockquote>
+                        </div>
+                      </div>
+                    </Card>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            
+            <div className="flex items-center justify-center mt-8 gap-2">
+              <CarouselPrevious 
+                className="relative static left-0 right-auto translate-y-0 bg-coffee-700 hover:bg-coffee-600 border-none text-white"
               />
-            ))}
-          </div>
+              <div className="flex space-x-2">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => api?.scrollTo(index)}
+                    className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                      currentIndex === index ? 'bg-coffee-400' : 'bg-coffee-700'
+                    }`}
+                    aria-label={`Go to testimonial ${index + 1}`}
+                  />
+                ))}
+              </div>
+              <CarouselNext 
+                className="relative static right-0 left-auto translate-y-0 bg-coffee-700 hover:bg-coffee-600 border-none text-white"
+              />
+            </div>
+          </Carousel>
         </div>
       </div>
     </section>
