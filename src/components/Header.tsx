@@ -8,6 +8,9 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const menuItems = ['Главная', 'О нас', 'Меню', 'Блог', 'Контакты'];
+  const menuLinks = ['home', 'about', 'menu', 'blog', 'contact'];
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -29,16 +32,16 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            {['Home', 'About', 'Menu', 'Blog', 'Contact'].map((item) => (
+            {menuItems.map((item, index) => (
               <a 
                 key={item} 
-                href={`#${item.toLowerCase()}`}
+                href={`#${menuLinks[index]}`}
                 className="text-coffee-800 hover:text-coffee-500 transition-colors coffee-hover font-medium"
               >
                 {item}
               </a>
             ))}
-            <Button className="bg-coffee-600 hover:bg-coffee-700 text-white">Order Now</Button>
+            <Button className="bg-coffee-600 hover:bg-coffee-700 text-white">Заказать</Button>
           </nav>
 
           {/* Mobile menu button */}
@@ -55,17 +58,17 @@ const Header = () => {
       {mobileMenuOpen && (
         <div className="md:hidden bg-white shadow-lg absolute top-full left-0 right-0 py-4 px-4">
           <nav className="flex flex-col space-y-4">
-            {['Home', 'About', 'Menu', 'Blog', 'Contact'].map((item) => (
+            {menuItems.map((item, index) => (
               <a 
                 key={item} 
-                href={`#${item.toLowerCase()}`}
+                href={`#${menuLinks[index]}`}
                 className="text-coffee-800 hover:text-coffee-500 py-2 px-4 transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item}
               </a>
             ))}
-            <Button className="bg-coffee-600 hover:bg-coffee-700 text-white w-full">Order Now</Button>
+            <Button className="bg-coffee-600 hover:bg-coffee-700 text-white w-full">Заказать</Button>
           </nav>
         </div>
       )}

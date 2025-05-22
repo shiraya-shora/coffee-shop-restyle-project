@@ -12,7 +12,7 @@ const Footer = () => {
               <span className="text-coffee-400">Brew</span>Haven
             </h3>
             <p className="text-cream-200 mb-6">
-              Experience the perfect blend of tradition and innovation in every cup.
+              Ощутите идеальное сочетание традиций и инноваций в каждой чашке.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-cream-200 hover:text-coffee-400 transition-colors">
@@ -29,12 +29,12 @@ const Footer = () => {
 
           {/* Links */}
           <div>
-            <h4 className="text-lg font-bold mb-4">Quick Links</h4>
+            <h4 className="text-lg font-bold mb-4">Быстрые ссылки</h4>
             <ul className="space-y-2">
-              {['Home', 'About', 'Menu', 'Blog', 'Contact'].map((item) => (
+              {['Главная', 'О нас', 'Меню', 'Блог', 'Контакты'].map((item, index) => (
                 <li key={item}>
                   <a 
-                    href={`#${item.toLowerCase()}`}
+                    href={`#${['home', 'about', 'menu', 'blog', 'contact'][index]}`}
                     className="text-cream-200 hover:text-coffee-400 transition-colors"
                   >
                     {item}
@@ -46,34 +46,34 @@ const Footer = () => {
 
           {/* Hours */}
           <div>
-            <h4 className="text-lg font-bold mb-4">Opening Hours</h4>
+            <h4 className="text-lg font-bold mb-4">Часы работы</h4>
             <ul className="space-y-2 text-cream-200">
               <li className="flex justify-between">
-                <span>Monday - Friday</span>
-                <span>8:00 AM - 8:00 PM</span>
+                <span>Понедельник - Пятница</span>
+                <span>8:00 - 20:00</span>
               </li>
               <li className="flex justify-between">
-                <span>Saturday</span>
-                <span>9:00 AM - 7:00 PM</span>
+                <span>Суббота</span>
+                <span>9:00 - 19:00</span>
               </li>
               <li className="flex justify-between">
-                <span>Sunday</span>
-                <span>10:00 AM - 6:00 PM</span>
+                <span>Воскресенье</span>
+                <span>10:00 - 18:00</span>
               </li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="text-lg font-bold mb-4">Contact Us</h4>
+            <h4 className="text-lg font-bold mb-4">Свяжитесь с нами</h4>
             <ul className="space-y-3 text-cream-200">
               <li className="flex items-start">
                 <MapPin className="mr-2 text-coffee-400 shrink-0 mt-1" size={18} />
-                <span>123 Coffee Street, Brewville, CA 94123</span>
+                <span>ул. Кофейная 123, Москва, 123456</span>
               </li>
               <li className="flex items-center">
                 <Phone className="mr-2 text-coffee-400" size={18} />
-                <span>(555) 123-4567</span>
+                <span>+7 (495) 123-45-67</span>
               </li>
               <li className="flex items-center">
                 <Mail className="mr-2 text-coffee-400" size={18} />
@@ -84,7 +84,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-coffee-800 mt-12 pt-8 text-center text-cream-300">
-          <p>&copy; {new Date().getFullYear()} BrewHaven. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} BrewHaven. Все права защищены.</p>
         </div>
       </div>
     </footer>

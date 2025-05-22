@@ -15,42 +15,42 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 const testimonials = [
   {
     id: 1,
-    name: 'Sarah Johnson',
-    role: 'Coffee Enthusiast',
+    name: 'Сара Джонсон',
+    role: 'Любитель кофе',
     image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80',
-    quote: 'BrewHaven has become my daily ritual. The attention to detail in every cup is remarkable, and the atmosphere makes it my favorite place to work remotely.',
+    quote: 'BrewHaven стал моим ежедневным ритуалом. Внимание к деталям в каждой чашке просто замечательное, а атмосфера делает его моим любимым местом для удаленной работы.',
     rating: 5
   },
   {
     id: 2,
-    name: 'Michael Chen',
-    role: 'Local Business Owner',
+    name: 'Михаил Чен',
+    role: 'Владелец местного бизнеса',
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80',
-    quote: "I've visited coffee shops around the world, and BrewHaven stands among the best. Their single-origin espresso changed my perspective on what coffee can be.",
+    quote: "Я посещал кофейни по всему миру, и BrewHaven стоит среди лучших. Их эспрессо из одного сорта зерен изменил мое представление о том, каким может быть кофе.",
     rating: 5
   },
   {
     id: 3,
-    name: 'Emma Rodriguez',
-    role: 'Food Blogger',
+    name: 'Эмма Родригес',
+    role: 'Фуд-блогер',
     image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-    quote: 'Not only is their coffee exceptional, but their pastries are to die for. The almond croissant pairs perfectly with their signature latte.',
+    quote: 'Не только их кофе исключительный, но и выпечка просто восхитительна. Миндальный круассан идеально сочетается с их фирменным латте.',
     rating: 5
   },
   {
     id: 4,
-    name: 'David Wilson',
-    role: 'Coffee Connoisseur',
+    name: 'Давид Вильсон',
+    role: 'Ценитель кофе',
     image: 'https://images.unsplash.com/photo-1500048993953-d23a436266cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-    quote: 'The atmosphere at BrewHaven is simply unmatched. It has become my go-to spot for both casual meetings and focused work sessions.',
+    quote: 'Атмосфера в BrewHaven просто несравненная. Это стало моим любимым местом как для непринужденных встреч, так и для сосредоточенной работы.',
     rating: 5
   },
   {
     id: 5,
-    name: 'Sophia Kim',
-    role: 'Regular Customer',
+    name: 'София Ким',
+    role: 'Постоянный клиент',
     image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80',
-    quote: 'The seasonal specialties at BrewHaven always surprise and delight. Their attention to quality and detail is evident in every cup.',
+    quote: 'Сезонные специалитеты в BrewHaven всегда удивляют и радуют. Их внимание к качеству и деталям проявляется в каждой чашке.',
     rating: 5
   }
 ];
@@ -93,7 +93,7 @@ const TestimonialsSection = () => {
         <div className="text-center mb-16">
           <span className="text-coffee-400 font-medium mb-2 block">Отзывы</span>
           <h2 className="text-4xl font-bold mb-4 text-white">
-            What Our Customers Say
+            Что Говорят Наши Клиенты
           </h2>
         </div>
 
@@ -160,7 +160,7 @@ const TestimonialsSection = () => {
                     className={`w-2.5 h-2.5 rounded-full transition-colors ${
                       currentIndex === index ? 'bg-coffee-400' : 'bg-coffee-700'
                     }`}
-                    aria-label={`Go to testimonial ${index + 1}`}
+                    aria-label={`Перейти к отзыву ${index + 1}`}
                   />
                 ))}
               </div>
